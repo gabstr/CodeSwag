@@ -2,8 +2,6 @@ package de.gabstr.coderswag.controller
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.AdapterView
-import android.widget.Toast
 import de.gabstr.coderswag.R
 import de.gabstr.coderswag.adapters.CategoryAdapter
 import de.gabstr.coderswag.services.DataService
@@ -19,10 +17,5 @@ class MainActivity : AppCompatActivity() {
 
         adapter = CategoryAdapter(this, DataService.categories)
         categoryListView.adapter = adapter;
-
-        categoryListView.setOnItemClickListener { adapterView, view, i, l ->
-            val category = DataService.categories[i]
-            Toast.makeText(this, "You clicked on the ${category.title}", Toast.LENGTH_SHORT).show()
-        }
     }
 }
