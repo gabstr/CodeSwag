@@ -4,7 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import de.gabstr.coderswag.EXTRA_CATEGORY
+import de.gabstr.coderswag.utilities.EXTRA_CATEGORY
 import de.gabstr.coderswag.R
 import de.gabstr.coderswag.adapters.CategoryRecycleAdapter
 import de.gabstr.coderswag.services.DataService

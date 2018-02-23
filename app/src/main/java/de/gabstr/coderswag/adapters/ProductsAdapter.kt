@@ -1,14 +1,19 @@
 package de.gabstr.coderswag.adapters
 
 import android.content.Context
+import android.content.Intent
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import de.gabstr.coderswag.R
+import de.gabstr.coderswag.controller.ProductActivity
 import de.gabstr.coderswag.model.Product
+import de.gabstr.coderswag.utilities.EXTRA_PRODUCT
 
 class ProductsAdapter(val context: Context, val products: List<Product>)
                                 : RecyclerView.Adapter<ProductsAdapter.ProductHolder>() {
@@ -19,7 +24,8 @@ class ProductsAdapter(val context: Context, val products: List<Product>)
     }
 
     override fun onBindViewHolder(holder: ProductHolder?, position: Int) {
-        holder?.bindProduct(products[position], context)
+        var product = products[position]
+        holder?.bindProduct(product, context)
     }
 
     override fun getItemCount(): Int {
@@ -36,6 +42,16 @@ class ProductsAdapter(val context: Context, val products: List<Product>)
             productImage?.setImageResource(resourceId)
             productName?.text = product.title
             productPrice?.text = product.price
+
+            itemView.setOnClickListener(View.OnClickListener {
+                if(product.title != "") {
+                    val productActivity = Intent(context, ProductActivity::class.java)
+                    productActivity.putExtra(EXTRA_PRODUCT, product)
+                    context.startActivity(productActivity)
+                } else {
+                    Toast.makeText(context, "Please select a product", Toast.LENGTH_SHORT).show()
+                }
+            })
         }
     }
 
